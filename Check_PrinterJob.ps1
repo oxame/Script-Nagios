@@ -41,7 +41,7 @@ try {
     {
         $stat = "OK"
         $ExitCode = 0
-        $out = "Print OK"
+        $out = "Print Job OK"
     }
     elseif(($Nb -ge $Warning)  -and ($Nb -lt $Critical))
     {
