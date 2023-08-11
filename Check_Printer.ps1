@@ -15,16 +15,16 @@ try {
         
         if($printer.PrinterStatus -ne 'Normal')
         {
-            if($printer.PrinterStatus -ne 'Error')
+            if($printer.PrinterStatus -eq 'Error')
             {
                  $PError = 2
             }
             else
             {
-                if(!$PError) { $PError = 1 }
+                if($PError -ne 2) { $PError = 1 }
             }
 
-            if($ListPrinter)
+            if(!$ListPrinter)
             {
                 $ListPrinter = "$($printer.Name) $($printer.PrinterStatus)"
             }
@@ -45,11 +45,13 @@ try {
     {
         $stat = "WARNING"
         $ExitCode = 1
+		$out = "$ListPrinter"
     }
     elseif($PError -eq 2)
     {
         $stat = "CRITICAL"
         $ExitCode = 2
+		$out = "$ListPrinter"
     }
 
 }
