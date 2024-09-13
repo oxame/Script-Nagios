@@ -46,6 +46,12 @@ def Function_Write_OutputNagios(Status,PrintOut,Data,Fichier):
 def Function_Formdata(Label,Valeur,Unit,Warn,Crit,min,max):
     return "'" + Label + "'" + "=" + str(Valeur) + str(Unit) + ";" + str(Warn) + ";" + str(Crit)  + ";" + str(min) + ";" +  str(max)
 
+
+def Function_Status(Event,Status, TimeJalonSecond,StartAction,  Warning, Critical, LogFolder , ScriptName)
+        Function_Write_Log(str(datetime.now()) + " : " + Event + " " + Status,LogFolder + ScriptName + '.log')
+        TimeAction = Function_diffdate(StartAction, datetime.now())
+        return Function_Formdata(Event,TimeAction.seconds,'s',Warning,Critical,0,TimeJalonSecond) 
+    
 # Uncomment the line below for integrations with BotMaestro
 # Using the Maestro SDK
 # from botcity.maestro import *
